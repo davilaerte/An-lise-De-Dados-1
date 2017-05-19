@@ -1,0 +1,30 @@
+---
+title: "Problema 1 - Checkpoint 1"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Setando o diretorio e instalando e carregando as bibliotecas 
+
+```{r ambiente}
+setwd(Downloads)
+dados <- read.csv('series_from_imdb.csv')
+```
+
+## filtrando series
+Começaremos nosso estudo filtrando as series Game of Thrones e Vikings o qual iremos analisar posteriomente.
+
+```{r pressure, echo=FALSE}
+series_vinkings <- dados %>% filter(series_name %in% c("Vikings"))
+series <- dados %>% filter(series_name %in% c("Vikings", "Game of Thrones"))
+```
+## Grafico de avalição por episodio de serie
+
+
+```{r}
+ggplot(data = series, aes(x=series_ep, y=UserRating, group=series_name, colour=series_name)) + geom_line()
+```
+
